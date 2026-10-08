@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gaurav Badwane | Computer Engineering Student</title>
+<meta name="description" content="Portfolio of Gaurav Badwane, computer engineering student learning DSA, C++ and Python.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#eef2f7; --card:#ffffff; --ink:#14213d; --muted:#4a5878;
+  --line:#c9d3e3; --accent:#2b59ff; --mark:#ffd447; --found:#12a150;
+  --display:'Bricolage Grotesque','Trebuchet MS',system-ui,sans-serif;
+  --body:'Instrument Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){--paper:#0f1626;--card:#172038;--ink:#e8eefc;--muted:#a3b0cc;--line:#2a3658;--accent:#7b9bff;--mark:#e6b800;--found:#3ddc84}
+}
+:root[data-theme="dark"]{--paper:#0f1626;--card:#172038;--ink:#e8eefc;--muted:#a3b0cc;--line:#2a3658;--accent:#7b9bff;--mark:#e6b800;--found:#3ddc84}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);line-height:1.65;font-size:17px;
+  background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
+  background-size:32px 32px;background-attachment:fixed}
+body::before{content:"";position:fixed;inset:0;background:var(--paper);opacity:.72;z-index:-1}
+a{color:var(--accent)}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:4px}
+.wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+header.nav{position:sticky;top:0;background:color-mix(in srgb,var(--paper) 88%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);z-index:5}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
+.logo{font-family:var(--display);font-weight:800;font-size:1.15rem;color:var(--ink);text-decoration:none}
+.nav ul{display:flex;gap:22px;list-style:none;margin:0;padding:0}
+.nav a.l{color:var(--muted);text-decoration:none;font-weight:500;font-size:.95rem}
+.nav a.l:hover{color:var(--ink)}
+.theme{background:none;border:1px solid var(--line);color:var(--ink);border-radius:8px;padding:6px 10px;cursor:pointer;font:inherit;font-size:.85rem}
+@media(max-width:640px){.nav ul{display:none}}
+
+.hero{padding:88px 0 64px;display:grid;grid-template-columns:1.15fr 1fr;gap:48px;align-items:center}
+@media(max-width:860px){.hero{grid-template-columns:1fr;padding-top:56px}}
+.hero h1{font-family:var(--display);font-weight:800;font-size:clamp(2.6rem,7vw,4.6rem);line-height:1.02;margin:0 0 18px;letter-spacing:-.025em}
+.hero h1 span{background:linear-gradient(transparent 62%,var(--mark) 62% 92%,transparent 92%)}
+.hero p.lead{font-size:1.2rem;color:var(--muted);max-width:34ch;margin:0 0 28px}
+.btns{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-block;padding:12px 20px;border-radius:10px;font-weight:600;text-decoration:none;border:2px solid var(--ink);transition:transform .15s}
+.btn.primary{background:var(--ink);color:var(--paper)}
+.btn.ghost{color:var(--ink)}
+.btn:hover{transform:translateY(-2px)}
+
+.viz{background:var(--card);border:2px solid var(--ink);border-radius:14px;padding:20px;box-shadow:6px 6px 0 var(--ink)}
+.viz h2{font-family:var(--display);font-size:1.05rem;margin:0 0 4px}
+.viz small{color:var(--muted);display:block;margin-bottom:14px}
+.cells{display:grid;grid-template-columns:repeat(11,1fr);gap:4px;margin-bottom:6px}
+.cell{aspect-ratio:1/1.1;display:flex;align-items:center;justify-content:center;border:1.5px solid var(--line);border-radius:6px;font-weight:600;font-size:.82rem;background:var(--paper);transition:background .2s,opacity .2s}
+.cell.out{opacity:.25}
+.cell.mid{background:var(--mark);border-color:var(--ink);color:#14213d}
+.cell.hit{background:var(--found);border-color:var(--found);color:#fff}
+.tags{display:grid;grid-template-columns:repeat(11,1fr);gap:4px;font-size:.7rem;color:var(--accent);font-weight:700;text-align:center;height:1.2em}
+.ctrl{display:flex;gap:8px;align-items:center;margin-top:14px;flex-wrap:wrap}
+.ctrl input{width:76px;padding:8px;border:1.5px solid var(--line);border-radius:8px;background:var(--paper);color:var(--ink);font:inherit}
+.ctrl button{padding:8px 14px;border-radius:8px;border:1.5px solid var(--ink);background:var(--card);color:var(--ink);font:inherit;font-weight:600;cursor:pointer}
+.ctrl button.go{background:var(--accent);border-color:var(--accent);color:#fff}
+#msg{margin:12px 0 0;font-size:.92rem;min-height:3em}
+
+section{padding:64px 0;border-top:1px solid var(--line)}
+section h2.t{font-family:var(--display);font-size:2rem;margin:0 0 28px;letter-spacing:-.01em}
+.about{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+@media(max-width:760px){.about{grid-template-columns:1fr}}
+.about p{margin:0 0 14px;max-width:62ch}
+.facts{background:var(--card);border:1.5px solid var(--line);border-radius:12px;padding:20px 24px}
+.facts dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:10px 18px}
+.facts dt{color:var(--muted);font-size:.9rem}
+.facts dd{margin:0;font-weight:500}
+
+.skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+.skill{background:var(--card);border:1.5px solid var(--line);border-radius:12px;padding:18px 20px}
+.skill h3{font-family:var(--display);margin:0 0 6px;font-size:1.15rem}
+.skill p{margin:0;color:var(--muted);font-size:.95rem}
+.skill .st{display:inline-block;margin-top:12px;font-size:.8rem;font-weight:600;padding:3px 10px;border-radius:99px;background:var(--mark);color:#14213d}
+
+.projects{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+.proj{background:var(--card);border:2px dashed var(--line);border-radius:14px;padding:22px}
+.proj h3{font-family:var(--display);margin:0 0 8px}
+.proj p{margin:0 0 14px;color:var(--muted)}
+.proj .chips span{display:inline-block;margin:0 6px 6px 0;padding:3px 10px;border:1px solid var(--line);border-radius:99px;font-size:.8rem}
+
+.timeline{list-style:none;margin:0;padding:0 0 0 22px;border-left:3px solid var(--accent)}
+.timeline li{position:relative;padding:0 0 28px 18px}
+.timeline li::before{content:"";position:absolute;left:-31px;top:7px;width:13px;height:13px;border-radius:50%;background:var(--paper);border:3px solid var(--accent)}
+.timeline h3{margin:0;font-family:var(--display);font-size:1.15rem}
+.timeline .when{color:var(--muted);font-size:.9rem}
+
+.contact{text-align:left}
+.contact p{max-width:52ch;color:var(--muted)}
+footer{padding:28px 0 40px;border-top:1px solid var(--line);color:var(--muted);font-size:.9rem}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="logo" href="#top">Gaurav Badwane</a>
+    <ul>
+      <li><a class="l" href="#about">About</a></li>
+      <li><a class="l" href="#skills">Skills</a></li>
+      <li><a class="l" href="#projects">Projects</a></li>
+      <li><a class="l" href="#journey">Journey</a></li>
+      <li><a class="l" href="#contact">Contact</a></li>
+    </ul>
+    <button class="theme" id="themeBtn" aria-label="Toggle dark mode">Dark mode</button>
+  </div>
+</header>
+
+<main id="top">
+  <div class="wrap hero">
+    <div>
+      <h1>I solve problems <span>one step</span> at a time.</h1>
+      <p class="lead">Computer engineering student building a base in data structures, C++ and Python.</p>
+      <div class="btns">
+        <a class="btn primary" href="#projects">See my work</a>
+        <a class="btn ghost" href="https://www.linkedin.com/in/gaurav-badwane-483a91277/" target="_blank" rel="noopener">Connect on LinkedIn</a>
+      </div>
+    </div>
+
+    <div class="viz" aria-label="Binary search demo">
+      <h2>Binary search, step by step</h2>
+      <small>A topic I'm practising. Pick a number and press Step.</small>
+      <div class="cells" id="cells" role="list"></div>
+      <div class="tags" id="tags" aria-hidden="true"></div>
+      <div class="ctrl">
+        <label for="target" class="sr" style="font-size:.9rem;color:var(--muted)">Find</label>
+        <input id="target" type="number" value="42" min="0" max="99">
+        <button class="go" id="step">Step</button>
+        <button id="reset">Reset</button>
+      </div>
+      <p id="msg" aria-live="polite"></p>
+    </div>
+  </div>
+
+  <section id="about"><div class="wrap">
+    <h2 class="t">About me</h2>
+    <div class="about">
+      <div>
+        <p>I'm a Computer Engineering student at Sinhagad College of Engineering (SKNCOE), Pune. I'm working towards becoming a software developer.</p>
+        <p>Right now I'm learning data structures and algorithms in C++, writing Python, and exploring generative AI. I like problems where I have to break a big task into small, testable steps.</p>
+      </div>
+      <div class="facts">
+        <dl>
+          <dt>Degree</dt><dd>B.E. Computer Engineering</dd>
+          <dt>College</dt><dd>Sinhagad Technical Education Society's College of Engineering</dd>
+          <dt>Years</dt><dd>2025 to 2029</dd>
+          <dt>Based in</dt><dd>Pune Division, Maharashtra</dd>
+        </dl>
+      </div>
+    </div>
+  </div></section>
+
+  <section id="skills"><div class="wrap">
+    <h2 class="t">Skills</h2>
+    <div class="skills">
+      <div class="skill"><h3>C++</h3><p>Syntax, STL basics and writing solutions for practice problems.</p><span class="st">Learning</span></div>
+      <div class="skill"><h3>Data structures and algorithms</h3><p>Arrays, searching, sorting and the habit of reasoning about complexity.</p><span class="st">Learning</span></div>
+      <div class="skill"><h3>Python</h3><p>Scripting and small programs.</p><span class="st">Practising</span></div>
+      <div class="skill"><h3>Generative AI</h3><p>Completed the Introduction to Generative AI Studio certification.</p><span class="st">Exploring</span></div>
+    </div>
+  </div></section>
+
+  <section id="projects"><div class="wrap">
+    <h2 class="t">Projects</h2>
+    <div class="projects">
+      <!-- Replace each card with a real project. Add a GitHub link and a live link. -->
+      <article class="proj">
+        <h3>Your first project</h3>
+        <p>Describe the problem it solves, what you built, and what you learned in two sentences.</p>
+        <div class="chips"><span>C++</span><span>DSA</span></div>
+        <a href="#" aria-label="Project source on GitHub">View on GitHub</a>
+      </article>
+      <article class="proj">
+        <h3>Your second project</h3>
+        <p>A Python tool, a small game or a GenAI experiment would fit well here.</p>
+        <div class="chips"><span>Python</span></div>
+        <a href="#" aria-label="Project source on GitHub">View on GitHub</a>
+      </article>
+    </div>
+  </div></section>
+
+  <section id="journey"><div class="wrap">
+    <h2 class="t">Journey</h2>
+    <ol class="timeline">
+      <li><h3>Introduction to Generative AI Studio</h3><div class="when">Certification, Sep 2026</div></li>
+      <li><h3>Started B.E. in Computer Engineering</h3><div class="when">SKNCOE, Sep 2025</div></li>
+      <li><h3>Expected graduation</h3><div class="when">May 2029</div></li>
+    </ol>
+  </div></section>
+
+  <section id="contact"><div class="wrap contact">
+    <h2 class="t">Let's connect</h2>
+    <p>I'm open to learning with other students and to internship and project opportunities. The fastest way to reach me is LinkedIn.</p>
+    <div class="btns">
+      <a class="btn primary" href="https://www.linkedin.com/in/gaurav-badwane-483a91277/" target="_blank" rel="noopener">Message me on LinkedIn</a>
+    </div>
+  </div></section>
+</main>
+
+<footer><div class="wrap">&copy; <span id="yr"></span> Gaurav Badwane</div></footer>
+
+<script>
+(function(){
+  var arr=[3,8,14,21,27,35,42,56,63,78,91];
+  var cells=document.getElementById('cells'), tags=document.getElementById('tags');
+  var msg=document.getElementById('msg'), tgt=document.getElementById('target');
+  var lo,hi,done;
+  arr.forEach(function(v){
+    var c=document.createElement('div');c.className='cell';c.setAttribute('role','listitem');c.textContent=v;cells.appendChild(c);
+    tags.appendChild(document.createElement('div'));
+  });
+  function draw(mid,hit){
+    for(var i=0;i<arr.length;i++){
+      var c=cells.children[i];
+      c.className='cell'+((i<lo||i>hi)?' out':'')+(i===mid?(hit?' hit':' mid'):'');
+      tags.children[i].textContent=(i===lo&&i===hi)?'lo,hi':i===lo?'lo':i===hi?'hi':'';
+    }
+  }
+  function reset(){lo=0;hi=arr.length-1;done=false;draw(-1);msg.textContent='Searching the whole list. Press Step to check the middle.';}
+  function step(){
+    if(done){reset();return;}
+    var t=parseInt(tgt.value,10);
+    if(isNaN(t)){msg.textContent='Enter a number to find.';return;}
+    if(lo>hi){done=true;draw(-1);msg.textContent=t+' is not in the list.';return;}
+    var mid=Math.floor((lo+hi)/2);
+    if(arr[mid]===t){done=true;draw(mid,true);msg.textContent='Found '+t+' at index '+mid+'.';}
+    else if(arr[mid]<t){draw(mid);msg.textContent=arr[mid]+' is smaller than '+t+', so discard the left half.';lo=mid+1;}
+    else{draw(mid);msg.textContent=arr[mid]+' is larger than '+t+', so discard the right half.';hi=mid-1;}
+  }
+  document.getElementById('step').onclick=step;
+  document.getElementById('reset').onclick=reset;
+  tgt.addEventListener('input',reset);
+  reset();
+
+  document.getElementById('yr').textContent=new Date().getFullYear();
+  var btn=document.getElementById('themeBtn'),root=document.documentElement;
+  btn.onclick=function(){
+    var dark=getComputedStyle(root).getPropertyValue('--paper').trim()==='#0f1626';
+    root.setAttribute('data-theme',dark?'light':'dark');
+    btn.textContent=dark?'Dark mode':'Light mode';
+  };
+})();
+</script>
+</body>
+</html>
